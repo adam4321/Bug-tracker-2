@@ -1,0 +1,107 @@
+{{!-- User's assigned bugs view - using express handlebars --}}
+<title>Bug Tracker | Home</title>
+<link type="text/css" rel="stylesheet" href="/css/your-bugs.css">
+
+
+{{!-- Container for the dashboard --}}
+<div id="top-row-container">
+
+    {{!-- If condition to set a lower height when chart has 1 entry --}}
+    {{#if (eq_str_num bugs.length 1)}}
+    <div id="table-container-one-row" class="table-card mdl-card mdl-shadow--2dp">
+    {{else}}
+    <div id="table-container" class="table-card mdl-card mdl-shadow--2dp">
+    {{/if}}
+
+        <div class="mdl-card__title mdl-color-text--white dashboard-top-bar">
+            <h2 class="mdl-card__title-text">Your Bugs</h2>
+        </div> 
+
+        {{#if bugs}}
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                <div id="search-container">
+                    <form id="search-form">
+                        <input 
+                            id="search-input" 
+                            type="text" 
+                            placeholder="Search bug summaries, descriptions, and resolutions." 
+                            name="search"
+                        >
+                        <button class="submitBtn" id="search-btn" type="button">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </form>
+                    <button class="submitBtn" id="clear-search">View All</button>
+                </div>
+            
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="recordTable">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Bug</th>
+                            <th class="mdl-data-table__cell--non-numeric">Bug Description</th>
+                            <th class="mdl-data-table__cell--non-numeric">Project</th>
+                            <th class="mdl-data-table__cell--non-numeric">Programmers</th>
+                            <th class="mdl-data-table__cell--non-numeric">Date</th>
+                            <th class="mdl-data-table__cell--non-numeric">Priority</th>
+                            <th class="mdl-data-table__cell--non-numeric">Fixed</th>
+                            <th class="mdl-data-table__cell--non-numeric">Resolution</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        {{#each bugs}}
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"><div class="user-text">{{this.bugSummary}}</div></td>
+                            <td class="mdl-data-table__cell--non-numeric"><div class="user-text">{{this.bugDescription}}</div></td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{#if this.projectName}}{{this.projectName}}{{else}}NULL{{/if}}
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                    {{#each programmers}} {{this}} <br> {{/each}}
+                            </td>
+                            <td>{{this.dateStarted}}</td>
+                            <td>{{this.priority}}</td>
+                            <td class="bugFixed">{{#if this.fixed}} Yes {{else}} No {{/if}}</td>
+                            <td class="mdl-data-table__cell--non-numeric"><div class="user-text">{{this.resolution}}</div></td>
+                            <td><a class="update-btn" href="/bug_tracker/edit_bug?bugId={{this.bugId}}">Update</a></td>
+                            <td>
+                                <input 
+                                    type="button" 
+                                    value="Delete" 
+                                    class="update-btn" 
+                                    onclick="deleteBug('recordTable', this, {{this.bugId}})"
+                                >
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        {{else}}
+            <p id="empty-txt-start" class="empty-txt">
+                You can assign bugs to yourself on the all bugs page. 
+            </p>
+            <p class="empty-txt">
+                You can also add a new bug with you 
+                as a programmer on the add a bug page.
+            </p>
+        {{/if}}
+        
+    </div>
+
+    <div id="bug-chart-container" class="mdl-card mdl-shadow--2dp">
+        <div id="bug-chart-title" class="mdl-card__title mdl-color-text--white dashboard-top-bar">
+            <h2 class="mdl-card__title-text">Your Fixed Bugs</h2>
+        </div>
+
+        <div id="bug-chart-text" class="mdl-color-text--grey-600">
+            <div id="chart">
+                <div id="my_dataviz"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/your-bugs.js"></script>

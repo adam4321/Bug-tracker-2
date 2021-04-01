@@ -1,0 +1,430 @@
+/******************************************************************************
+**  Description:    Overall CSS styles
+******************************************************************************/
+
+html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.mdl-layout-title {
+    font-size: 22px;
+}
+
+.demo-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+}
+
+.demo-layout .mdl-layout__header .mdl-layout__drawer-button {
+    color: white;
+    background-color:  rgb(45, 122, 153);
+}
+
+.mdl-layout__drawer .avatar {
+    margin-bottom: 16px;
+}
+
+.demo-drawer {
+    border: none;
+}
+
+/* iOS Safari specific workaround */
+.demo-drawer .mdl-menu__container {
+    z-index: -1;
+}
+
+.demo-drawer .demo-navigation {
+    z-index: -2;
+}
+/* END iOS Safari specific workaround */
+
+.demo-drawer .mdl-menu .mdl-menu__item {
+    display: flex;
+    align-items: center;
+    min-width: 180px;
+}
+
+.demo-drawer-header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    height: 151px;
+}
+
+.demo-avatar-dropdown {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.demo-navigation {
+    flex-grow: 1;
+}
+
+.demo-layout .demo-navigation .mdl-navigation__link {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 500;
+}
+
+.demo-layout .demo-navigation .mdl-navigation__link:hover {
+    background-color: rgba(52, 144, 180, 0.651);
+    color: #37474F;
+}
+
+.demo-navigation .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.56);
+    margin-right: 32px;
+}
+
+.demo-cards {
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.demo-cards .demo-separator {
+    height: 32px;
+}
+
+.mdl-card__title-text {
+    color: white;
+    font-size: 18px !important;
+    font-weight: 400;
+}
+
+.demo-cards ul {
+    padding: 0;
+}
+
+.demo-cards h3 {
+    font-size: 1em;
+}
+
+.demo-cards .mdl-card__actions a {
+    color: rgb(45, 122, 153);
+    text-decoration: none;
+}
+
+.demo-options h3 {
+    margin: 0;
+}
+
+.demo-options .mdl-checkbox__box-outline {
+    border-color: rgba(255, 255, 255, 0.89);
+}
+
+.demo-options ul {
+    margin: 0;
+    list-style-type: none;
+}
+
+.demo-options li {
+    margin: 4px 0;
+}
+
+.demo-options .material-icons {
+    color: rgba(255, 255, 255, 0.89);
+}
+.demo-options .mdl-card__actions {
+    height: 64px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+
+/* Main container settings ------------------------------------------------- */
+
+a {
+    text-decoration: none;
+}
+
+#top-bar {
+    background-color: rgb(45, 122, 153);
+    padding: 20px 0 15px 0;
+}
+
+.top-bar {
+    background-color: rgb(45, 122, 153);
+    color: white;
+}
+
+#bug-logo {
+    height: 35px;
+    margin-right: 8px;
+}
+
+.dashboard-top-bar {
+    background-color: rgb(45, 122, 153);
+}
+
+#page-title {
+    color: white;
+    text-decoration: none;
+}
+
+.page-links {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-right: 40px;
+}
+
+.page-links:hover {
+    color: rgb(214, 212, 212);
+}
+
+#logout-button {
+    background-color: #f0efef;
+}
+
+#logout-button:hover {
+    background-color: #cecece;
+}
+
+
+/* Component Box settings -------------------------------------------------- */
+
+.mdl-layout__content {
+    width: 100%;
+}
+
+.page-content {
+    margin: 2%;
+}
+
+.full-width-box {
+    width: 100%;
+}
+
+
+/* Form settings ----------------------------------------------------------- */
+
+#recordForm {
+    width: 450px;
+    background-color: #d8e9e962;
+    padding: 15px;
+}
+
+#recordForm label, #recordForm input, textarea, select {
+    margin: 4px;
+    display: inline-block;
+}
+
+#recordForm label {
+    width: 110px;
+}
+
+.textarea-label {
+    vertical-align: top;
+}
+
+#recordForm input, textarea, select {
+    width: 300px;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #808080;
+}
+
+#submit {
+    margin-top: 30px;
+}
+
+#save {
+    width: 100px !important;
+}
+
+#cancel {
+    width: 100px;
+}
+
+.btn-style {
+    background-color: rgb(52, 144, 180);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    margin-top: 10px !important;
+    padding: 10px !important;
+    cursor: pointer;
+}
+
+.btn-style:hover {
+    background-color: #226078;
+}
+
+.radio-input {
+    width: 20px !important;
+}
+
+.radio-label {
+    width: 30px !important;
+    margin-right: 20px !important;
+}
+
+legend {
+    display: none;
+}
+
+.mdl-card__supporting-text {
+    padding: 25px !important;
+}
+
+select {
+    width: 311.6px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 120px 330px;
+    grid-column-gap: 15px;
+}
+
+
+/* Size the ADD BUG programmer checkbox container -------------------------- */
+
+.checkbox-container {
+    border: 1px solid #808080;
+    border-radius: 2px;
+    background-color: #fff;
+    margin: 5px 0 5px 4px;
+    width: 310px;
+    overflow: scroll;
+    height: 90px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.checkbox-input {
+    width: 10px !important;
+}
+
+
+/* Spacing for the submission button spinner animation --------------------- */
+
+.mdl-spinner {
+    margin-bottom: -10px;
+    margin-left: 25px;
+}
+
+.inline-btn-msg {
+    display: inline-block;
+}
+
+
+/* Submit buttons ------------------------------------------------------------- */
+
+.submitBtn {
+    cursor: pointer;
+}
+
+.div-label {
+    padding-top: 5px;
+}
+
+.btn-space {
+    margin-right: 15px;
+}
+
+
+/* MAIN LAYOUT MODALS ------------------------------------------------------ */
+
+/* The 3 Modal backgrounds */
+.modal {
+    display: none;      /* Hidden by default */
+    position: fixed;    /* Stay in place */
+    z-index: 100;       /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;        /* Full width */
+    height: 100%;       /* Full height */
+    overflow: auto;     /* Enable scroll if needed */
+    background-color: rgb(0,0,0);       /* Fallback color */
+    background-color: rgba(0,0,0,0.4);  /* Black w/ opacity */
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-title {
+    background-color: rgb(45, 122, 153);
+    text-align: center;
+    font-size: 24px;
+    padding: 15px 20px 0 20px;
+    margin: -20px 0 0 -20px;
+    width: 320px;
+    height: 35px;
+}
+
+.modal-text {
+    font-size: 18px;
+    margin: 35px 10px 20px 10px;
+}
+
+/* About Modal Content/Box ------------------------------------------------- */
+.aboutModal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 130px auto; /* 10% from the top and centered */
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #888;
+    width: 320px; /* Could be more or less, depending on screen size */
+    text-align: justify;
+}
+
+.aboutTitle {
+    width: 320px;
+}
+
+
+/* Contact Modal Content/Box ----------------------------------------------- */
+.contactModal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 130px auto; /* 10% from the top and centered */
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #888;
+    width: 320px; /* Could be more or less, depending on screen size */
+    text-align: justify;
+}
+
+.contactTitle {
+    width: 320px;
+}
+
+
+/* Modal Content/Box ------------------------------------------------------- */
+.infoModal-content {
+    background-color: #fefefe;
+    margin: 50px auto 50px auto; /* 10% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 600px; /* Could be more or less, depending on screen size */
+}
+
+.infoTitle {
+    width: 600px;
+}
+
+#infoBtn {
+    cursor: pointer;
+}

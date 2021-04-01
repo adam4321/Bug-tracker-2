@@ -1,0 +1,19 @@
+/******************************************************************************
+**  Description:    Edit bug page CSS styles
+******************************************************************************/
+
+.page-content {
+    width: 83%;
+}
+
+.form-card {
+    width: 530px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-card {
+    width: 620px !important;
+    margin-left: auto;
+    margin-right: auto;
+}

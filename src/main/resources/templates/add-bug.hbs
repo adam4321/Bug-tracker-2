@@ -1,0 +1,82 @@
+{{!--  Add bug page view - using express handlebars  --}}
+
+<title>Bug Tracker | Add a Bug</title>
+<link type="text/css" rel="stylesheet" href="/css/add-bug.css">
+      
+{{!-- Container for the dashboard --}}
+<div class="form-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop" id="main-box">
+    <div class="mdl-card__title mdl-color-text--white dashboard-top-bar">
+        <h2 class="mdl-card__title-text">Add a Bug</h2>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+        <form id="recordForm" action="/bug_tracker/insertBug">
+            <div class="grid-container">
+                <div><label class="textarea-label div-label" for="bug-summary">Bug Summary</label></div>
+                <div><textarea required name="bugSummary" id="bug-summary-field"></textarea></div>
+
+                <div><label class="textarea-label div-label" for="bug-description">Bug Description</label></div>
+                <div><textarea required name="bugDescription" id="bug-description-field"></textarea></div>
+
+                <div><label class="div-label" for="bug-project">Project</label></div>
+                <div>
+                    <select class="submitBtn" required name="bugProject" id="bug-project-field">
+                        <option value="" disabled selected>Select a project</option>
+                        <option value="null">NULL</option>
+                        {{#each projects}}
+                            <option value="{{this.projectId}}">{{this.projectName}}</option>
+                        {{/each}}
+                    </select>          
+                </div>
+
+                <div><label class="div-label" for="bug-programmer">Programmers</label></div>
+                <div class="checkbox-container">
+                    {{#each programmers}}
+                        <input 
+                            class="checkbox-input" 
+                            type="checkbox" 
+                            id="{{this.programmerId}}" 
+                            name="programmerId" 
+                            value="{{this.programmerId}}"
+                        >
+                        <label value="{{this.firstName}} {{this.lastName}}" 
+                            for="programmer1">{{this.firstName}} {{this.lastName}}
+                        </label><br>
+                    {{/each}}
+                </div>
+
+                <div><label class="div-label" for="bug-start-date">Date Started</label></div>
+                <div><input  class="submitBtn" required type="date" name="bugStartDate" id="bug-start-date-field" placeholder="yyyy-mm-dd"></div>
+
+                <div><label class="div-label" for="bug-priority">Priority</label></div>
+                <div>
+                    <select class="submitBtn" name="bugPriority" id="bug-priority-field" required>
+                        <option value="" disabled selected>Select a priority (Highest: 5)</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div><label for="bug-fixed">Fixed</label></div>
+
+                <div>
+                    <input class="radio-input" type="radio" name="bugFixed" value="1" id="bug-fixed-yes">
+                    <label class="radio-label" for="bugFixed">Yes</label>
+                    <input class="radio-input" type="radio" name="bugFixed" value="0" id="bug-fixed-no" checked>
+                    <label class="radio-label" for="bugFixed">No</label>
+                </div>
+
+                <div><label class="textarea-label div-label" for="bug-resolution">Resolution</label></div>
+                <div><textarea name="bugResolution" id="bug-resolution-field"></textarea></div>
+                
+                <input type="submit" class="submitBtn btn-style" id="save" value="Add" onclick="checkBoxChecked()">
+                <div id="spinner" class = "mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="/js/add-bug.js"></script>

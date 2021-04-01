@@ -1,0 +1,44 @@
+{{!--   New project view - using express handlebars    --}}
+<title>Bug Tracker | Add Project</title>
+<link type="text/css" rel="stylesheet" href="/css/project.css">
+        
+{{!-- Container for the dashboard --}}
+<div class="form-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop" id="main-box">
+    <div class="mdl-card__title mdl-color-text--white dashboard-top-bar">
+        <h2 class="mdl-card__title-text">Add a Project</h2>
+    </div>
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+        <form id="recordForm" action="/bug_tracker/insertProject">
+            <fieldset>
+                <legend>Project Details</legend>
+                <label for="project-name">Project Name</label>
+                <input required type="text" name="projectName" id="project-name-field"><br>
+
+                <label for="project-company">Company</label>
+                <select class="submitBtn" required name="projectCompany" id="project-company-field">
+                    <option disabled selected>Select a Company</option>
+                    {{#each companies}}
+                        <option>{{this.companyName}}</option>
+                    {{/each}}
+                </select> <br>
+        
+                <label for="started-date">Date Started</label>
+                <input class="submitBtn" required type="date" name="startedDate" id="project-date-started-field" placeholder="yyyy-mm-dd"> <br>
+
+                <label for="updated-date">Last Updated</label>
+                <input class="submitBtn" required type="date" name="updatedDate" id="project-date-updated-field" placeholder="yyyy-mm-dd"> <br>
+        
+                <label for="maintenance">In Maintenance</label>
+                <input checked class="radio-input" type="radio" name="maintenance" value="1" id="maintenance-yes"><label class="radio-label" for="maintenance">Yes</label>
+                <input class="radio-input" type="radio" name="maintenance" value="0" id="maintenance-no"><label class="radio-label" for="maintenance">No</label>
+                <br>
+
+                <input class="submitBtn btn-style" type="submit" id="save" value="Add">
+                <div id="spinner" class = "mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<script src="/js/add-project.js"></script>

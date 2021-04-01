@@ -1,0 +1,42 @@
+{{!--   This is the exterior page view in which all other view components render  --}}
+{{!--   THIS VERSION IS FOR LOGGED OUT USERS  --}}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset=utf-8 />
+        <meta name="author" content="OSU CS-340 Group Project">
+        <meta name="description" content="Software Bug Tracker">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {{!-- Material Design Theming --}}
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+        {{!-- <link type="image/x-icon" rel="shortcut icon" href="/images/favicon-1.ico"/> --}}
+        <link type="text/css" rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+        <div style="height: 64px">
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header id="top-bar" class="mdl-layout__header mdl-color-text--white">
+                    <div class="mdl-layout__header-row">
+                        <img  id="bug-logo" src="/images/bug-logo.png" alt="White bug icon">
+                        <span class="mdl-layout-title">Bug Tracker</span>
+                    </div>
+                </header>
+            </div>
+        </div>
+
+        <div>
+            {{!-- Content Box to load the other views into --}}
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    {{{body}}}
+                </div>
+            </main>
+        </div>
+
+    </body>
+</html>

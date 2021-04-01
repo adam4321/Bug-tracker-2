@@ -1,0 +1,156 @@
+/******************************************************************************
+**  Description:    Login Page CSS styles
+******************************************************************************/
+
+#top-bar {
+    height: 84px;
+}
+
+.mdl-layout-header-row {
+    height: 64px;
+    max-height: 64px;
+}
+
+#bug-logo {
+    margin-top: -15px;
+    height: 50px;
+}
+
+.mdl-layout-title {
+    margin-top: -19px;
+    font-size: 25px;
+}
+
+#login-container {
+    width: 450px;
+    margin-top: 65px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.signin-btn-text {
+    margin-top: 45px;
+    margin-left: -15px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.login-btns {
+    margin-left: -15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+#g-signin-text {
+    margin-top: 30px;
+    font-size: large;
+    font-weight: bold;
+}
+
+#g-signin {
+    height: 40px;
+    width: 166px;
+    margin-bottom: 30px;
+}
+
+#register-button {
+    width: 170px;
+    margin-bottom: 20px;
+}
+
+#attribution {
+    margin: -10px 0 -20px -15px;
+}
+
+#gh-link {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: verdana;
+    font-size: 20px;
+    padding-top: 12px;
+    width: 350px;
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 33px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+    -moz-box-shadow:    0px 3px 5px rgba(100, 100, 100, 0.49);
+    box-shadow:         0px 3px 5px rgba(100, 100, 100, 0.49);
+}
+
+
+/* Media queries for tablets ----------------------------------------------- */
+
+@media only screen and (max-width: 1024px) {
+    #top-bar {
+        height: 64px;
+    }
+
+    #login-container {
+        margin-top: 30px;
+    }
+
+    #bug-logo {
+        margin-top: -28px;
+        height: 35px;
+    }
+    
+    .mdl-layout-title {
+        margin-top: -30px;
+        font-size: 22px;
+    }
+}
+
+/* Media queries for verticle phones --------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+    .mdl-layout__header-row {
+        width: 260px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+    }
+
+    .dashboard-top-bar {
+        height: 45px;
+    }
+
+    .mdl-card__title-text {
+        margin-bottom: -5px;
+    }
+
+    #bug-logo {
+        margin-top: -28px;
+        margin-left: 0;
+    }
+
+    #login-container {
+        width: 250px;
+        margin-top: 20px;
+    }
+
+    .mdl-card__supporting-text {
+        width: 80%;
+    }
+
+    .signin-btn-text {
+        margin-left: 0px;
+    }
+
+    .login-btns {
+        margin-left: 0;
+    }
+
+    #gh-link {
+        margin-top: 20px;
+        width: 250px;
+        height: 47px;
+        font-size: 17px;
+    }
+}

@@ -1,0 +1,178 @@
+/******************************************************************************
+**  Description:  User-home css styles
+******************************************************************************/
+
+#empty-txt-start {
+    margin-top: 110px;
+}
+
+.empty-txt {
+    margin-top: 20px;
+    margin-left: 10%;
+    font-size: 20px;
+    color: #757575;
+    font-weight: bold;
+}
+
+
+/* Searchbar -------------------------------------------------------------- */
+
+#search-container {
+    margin-bottom: 25px;
+}
+
+#search-form {
+    border: 1px solid #808080;
+    border-radius: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+#search-form input, #search-form button, #clear-search, #reset-table {
+    border: 0;
+    vertical-align: middle;
+    padding: 3px;
+}
+
+#search-form button, #clear-search, #reset-table {
+    right: 0;
+    left: 0;
+    background-color: #2d7a99;
+    color: #fff;
+    width: 50px;
+    height: 36px !important;
+}
+
+#search-form button:hover, #clear-search:hover, .update-btn:hover, #reset-table:hover{
+    background-color: #226078;
+} 
+
+#clear-search {
+    margin-left: 16px;
+    width: 70px;
+    padding: 9px;
+    border-radius: 2px;
+}
+
+#reset-table {
+    margin-left: 16px;
+    padding: 9px;
+    width: 180px;
+    border-radius: 2px;
+}
+
+#search-form input {
+    width: 420px;
+    padding: 5px;
+}
+
+.update-btn {
+    background-color: #2d7a99;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.mdl-data-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+th {
+    padding-top: 8px !important;
+}
+
+td {
+    max-width: 200px;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: -5px;
+    padding: 0;
+    margin-left: 1px;
+}
+
+
+/* Submit bug page spinner style ------------------------------------------- */
+
+#spinner {
+    margin-top: 15px;
+}
+
+
+/* Submit bug text cell max size ------------------------------------------- */
+
+.user-text {
+    max-height: 37px;
+    overflow: hidden;
+}
+
+/* Doughnut chart ---------------------------------------------------------- */
+
+#recordForm {
+    float: left;
+    width: 450px;
+}
+
+#top-row-container {
+    margin: 8px;
+    width: calc(100% - 16px);
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mdl-card__supporting-text {
+    width: 95%;
+}
+
+#table-container-one-row {
+    margin: 0 3% 0 0;
+    width: 1210px;
+    height: 280px;
+    /* height: 85vh; */
+    overflow-y: hidden;
+}
+
+#table-container {
+    margin: 0 3% 0 0;
+    width: 1210px;
+    /* height: 85vh; */
+    overflow-y: hidden;
+}
+
+#bug-chart-container {
+    width: 320px;
+    height: 360px;
+    text-align: center;
+}
+
+#bug-chart-title {
+    justify-content: center;
+}
+
+#my_dataviz {
+    margin: 30px 0 0 20px;
+}
+
+#bug-chart-text {
+    width: 300px;
+    height: 100%;
+}
+
+/* Fixed radio button ------------------------------------------------------ */
+
+.radio-input {
+    cursor: pointer;
+}

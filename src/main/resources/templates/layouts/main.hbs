@@ -1,0 +1,207 @@
+{{!--   This is the exterior page view in which all other view components render   --}}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="OSU CS-340 Summer 2020 Group 34">
+        <meta name="description" content="Software bug tracking application">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+        {{!-- Material Design Theming --}}
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-blue.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="/images/favicon-1.ico"/>
+        <link type="text/css" rel="stylesheet" href="/css/main.css">
+
+        {{!--  Load d3.js  --}}
+        <script src="https://d3js.org/d3.v4.js"></script>
+    </head>
+
+    <body>
+        <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+            {{!-- About Modal --}}
+            <div id="aboutModal" class="modal">
+
+                {{!-- Modal content --}}
+                <div class="aboutModal-content">
+
+                    <span class="aboutClose close">&times;</span>
+                    
+                    <div class="mdl-color-text--white modal-title aboutTitle">
+                        <h2 class="mdl-card__title-text">About</h2>
+                    </div> 
+
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        This bug tracker implementation is an extension of a group project from
+                        Oregon State University CS-340 by Adam Wright and Herman Cai.
+                    </p>
+
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        It is free for anyone to use or to fork and extend as they see fit.
+                    </p>
+                </div>
+            </div>
+
+            {{!-- Contact Modal --}}
+            <div id="contactModal" class="modal">
+
+                {{!-- Modal content --}}
+                <div class="contactModal-content">
+
+                    <span class="contactClose close">&times;</span>
+
+                    <div class="mdl-color-text--white modal-title contactTitle">
+                        <h2 class="mdl-card__title-text">Contact Information</h2>
+                    </div>
+
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        For any support, suggestions, or bug reports you can reach out
+                        to me by email or from this project's GitHub repository.
+                    </p>
+
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        Email: adamjw321@gmail.com
+                    </p>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        GitHub: <a href="https://github.com/adam4321/Bug-tracker">https://github.com/adam4321/Bug-tracker</a>
+                    </p>
+                    
+                </div>
+            </div>
+
+            {{!-- Info Modal --}}
+            <div id="infoModal" class="modal">
+
+                {{!-- Modal content --}}
+                <div class="infoModal-content">
+
+                    <span class="infoClose close">&times;</span>
+
+                    <div class="mdl-color-text--white modal-title infoTitle">
+                        <h2 class="mdl-card__title-text">Help</h2>
+                    </div>
+
+                    <h4 class="mdl-color-text--grey-600">Login</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        When a user has logged in using a Google credential, they are taken to the dashboard
+                        and shown the bugs that are assigned to them. Google is the only authentication
+                        provider that is supported at this time.
+                    </p>
+
+                    <h4 class="mdl-color-text--grey-600">Your Bugs</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The Your Bugs page displays all of the bugs that have the current user one of the
+                        programmers. If the user is brand new, then they will have no bugs assigned yet. A new
+                        user can either be added to an existing bug or a new bug can be added with the new user
+                        as a Programmer. The existing bugs can be found on the All Bugs page and a new bug
+                        can be created on the Add a Bug page. 
+                    </p>
+
+                    <h4 class="mdl-color-text--grey-600">All Bugs</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The All Bugs page displays the full set of bugs that are cataloged in the system.
+                        The page contains a graph which represents the percentage of all bugs which are
+                        fixed vs. still broken. 
+                    </p>
+
+                    <h4 class="mdl-color-text--grey-600">Add a Bug</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The Add a Bug page allows a user to enter a new bug into the system. 
+                    </p>
+
+                    <h4 class="mdl-color-text--grey-600">Projects</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The Projects page allows a user to enter a new Project into the system. 
+                    </p>
+
+                    <h4 class="mdl-color-text--grey-600">Companies</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The Companies page allows a user to enter a new Company into the system. 
+                    </p>
+                    
+                    <h4 class="mdl-color-text--grey-600">Programmers</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The Programmers page allows a user to enter a new bug into the system. 
+                    </p>
+
+                    <h4 class="mdl-color-text--grey-600">Admin</h4>
+                    <p class="mdl-color-text--grey-600 modal-text">
+                        The Admin page is only visible for users with an access level of 3 and it 
+                        allows a user to reset the database to its default initially populated data. 
+                    </p>
+                </div>
+            </div>
+
+            {{!-- Top Horizontal Header Bar --}}
+            <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+                <div class="top-bar mdl-layout__header-row">
+                    <img  id="bug-logo" src="/images/bug-logo.png" alt="White bug icon">
+                    <span class="mdl-layout-title">Bug Tracker</span>
+
+                    <div class="mdl-layout-spacer"></div>
+
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                        <li class="mdl-menu__item" id="aboutBtn">About</li>
+                        <li class="mdl-menu__item" id="contactBtn">Contact</li>
+                    </ul>
+                    
+                </div>
+            </header>
+            
+            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+
+                {{!-- Left Side Nav --}}
+                <header class="demo-drawer-header">
+                    <img src="{{photo}}" class="demo-avatar">
+                    <div class="demo-avatar-dropdown">
+                        <span>{{email}}</span>
+                        <div class="mdl-layout-spacer"></div>
+                        <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">arrow_drop_down</i>
+                        <span class="visuallyhidden">Accounts</span>
+                        </button>
+                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item" onclick="window.location.href = `/bug_tracker/logout`">Log Out</li>
+                        </ul>
+                    </div>
+                </header>
+
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="/bug_tracker/home"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Your Bugs</a>
+                    <a class="mdl-navigation__link" href="/bug_tracker/all_bugs"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>All Bugs</a>
+                    <a class="mdl-navigation__link" href="/bug_tracker/add_bug"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Add a Bug</a>
+                    <a class="mdl-navigation__link" href="/bug_tracker/projects"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Projects</a>
+                    <a class="mdl-navigation__link" href="/bug_tracker/companies"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Companies</a>
+                    <a class="mdl-navigation__link" href="/bug_tracker/programmers"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Programmers</a>
+
+                    {{#if (greater accessLevel 2)}}
+                        <a class="mdl-navigation__link" href="/bug_tracker/admin"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Admin</a>
+                    {{/if}}
+                    
+                    <div class="mdl-layout-spacer"></div>
+                    {{!-- Info Modal --}}
+                    <a class="mdl-navigation__link" id="infoBtn"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+                </nav>
+
+            </div>
+        
+            {{!-- Content Box to load the other views into --}}
+            <main class="mdl-layout__content">
+                <div class="page-content"> 
+                    {{{body}}}
+                </div>
+            </main>
+
+        </div>
+    </body>
+
+    <script src="/js/main.js"></script>
+
+</html>

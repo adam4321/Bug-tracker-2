@@ -1,0 +1,29 @@
+/******************************************************************************
+**  Description:    Add bug page CSS styles
+******************************************************************************/
+
+.page-content {
+    width: 83%;
+}
+
+.form-card {
+    width: 530px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-card {
+    width: 620px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Modile layouts ---------------------------------------------------------- */
+
+@media only screen and (max-width: 1024px) {
+    .page-content {
+        width: 100%;
+        margin: 25px auto 0 auto;
+    }
+}

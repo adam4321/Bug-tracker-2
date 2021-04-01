@@ -1,0 +1,55 @@
+/******************************************************************************
+**  Description:    Programmers page CSS styles
+******************************************************************************/
+
+.page-content {
+    width: 83%;
+}
+
+.form-card {
+    width: 530px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-card {
+    /* height: 85vh; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.card-lvl-3 {
+    width: 720px !important;
+}
+
+.card-lvl-2 {
+    width: 620px !important;
+}
+
+.update-btn {
+    background-color: #2d7a99;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+
+#add-btn {
+    width: 140px;
+    display: block;
+    margin: 0px auto 0px auto;
+    background-color:rgb(45, 122, 153);
+}
+
+
+/* Modile layouts ---------------------------------------------------------- */
+
+@media only screen and (max-width: 1024px) {
+    .page-content {
+        width: 100%;
+        margin: 25px auto 0 auto;
+    }
+}
