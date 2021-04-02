@@ -12,17 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginPage {
-    @RequestMapping("/")
+
+    // The login page which is the first page rendered when visiting the app
+    @RequestMapping("/bug_tracker/login")
 	public String index() throws IOException {
+        // Set the directory and file extension of the templates
         TemplateLoader loader = new ClassPathTemplateLoader();
         loader.setPrefix("/templates");
         loader.setSuffix(".hbs");
 
+        // Select the outer layout and inner body templates
         Handlebars handlebars = new Handlebars(loader);
-        Template body = handlebars.compile("login-page");
         Template layout = handlebars.compile("layouts/login");
-        String templateString = layout.apply(body);
+        Template body = handlebars.compile("login-page");
 
+        // Parse into a string and return
+        String bodyStr = body.apply("");
+        String templateString = layout.apply(bodyStr);
 		return templateString;
 	}
 }
