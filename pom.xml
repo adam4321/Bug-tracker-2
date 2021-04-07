@@ -12,7 +12,7 @@
 	<artifactId>bug_tracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bug_tracker</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Spring Boot reimplementation of Software Bug Tracker</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -51,24 +51,19 @@
             <version>4.0.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
         <!-- oauth2 -->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-client</artifactId>
-            <version>5.3.0.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
-            <version>5.3.0.RELEASE</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>js-cookie</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+	
+    </dependencies>
 
 	<build>
 		<plugins>
