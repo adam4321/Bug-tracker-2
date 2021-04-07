@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginPage {
 
     // The login page which is the first page rendered when visiting the app
-    @RequestMapping("/bug_tracker/login")
+    @RequestMapping("/login")
 	public String index() throws IOException {
         // Set the directory and file extension of the templates
         TemplateLoader loader = new ClassPathTemplateLoader();
