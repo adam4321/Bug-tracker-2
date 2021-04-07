@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+import com.adamjwright.bug_tracker.HandlebarsHelpers;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
@@ -33,8 +34,11 @@ public class ErrorPage implements ErrorController {
 
             // Handle 404 Error
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                // Select the outer layout and inner body templates
+                // Create handlebars object and add helper methods
                 Handlebars handlebars = new Handlebars(loader);
+                handlebars.registerHelpers(HandlebarsHelpers.class);
+                
+                // Select the outer layout and inner body templates
                 Template layout = handlebars.compile("layouts/main");
                 Template body = handlebars.compile("404");
 
@@ -63,8 +67,11 @@ public class ErrorPage implements ErrorController {
             
             // Handle 500 Error
             else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                // Select the outer layout and inner body templates
+                // Create handlebars object and add helper methods
                 Handlebars handlebars = new Handlebars(loader);
+                handlebars.registerHelpers(HandlebarsHelpers.class);
+                
+                // Select the outer layout and inner body templates
                 Template layout = handlebars.compile("layouts/main");
                 Template body = handlebars.compile("500");
 
