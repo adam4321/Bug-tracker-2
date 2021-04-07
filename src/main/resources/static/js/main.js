@@ -41,3 +41,22 @@ window.onclick = (event) => {
         infoModal.style.display = "none";
     }
 }
+
+
+/* POST request to log out the user ---------------------------------------- */
+
+let logout = () => {
+    fetch('/bug_tracker/logout', {
+        method: 'POST'
+    }).then(function (response) {
+        if (response.ok) {
+            window.location.href = '/bug_tracker/login';
+        }
+        return Promise.reject(response);
+    }).then(function (data) {
+        console.log(data);
+    }).catch(function (error) {
+        console.warn('Something went wrong.', error);
+    });
+}
+
