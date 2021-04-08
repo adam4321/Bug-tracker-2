@@ -1,6 +1,12 @@
+/******************************************************************************
+**  /error 404 and 500 http code routes
+******************************************************************************/
+
 package com.adamjwright.bug_tracker.controllers;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +19,8 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,13 +29,18 @@ public class ErrorPage implements ErrorController {
 
     // "Your bugs" the initial dashboard page -- render the bug list
     @GetMapping("/error")
-	public String handleError(HttpServletRequest request) throws IOException {
+	public String handleError(HttpServletRequest request, Authentication authentication) throws IOException {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         
         // Set the directory and file extension of the templates
         TemplateLoader loader = new ClassPathTemplateLoader();
         loader.setPrefix("/templates");
         loader.setSuffix(".hbs");
+
+        // Retrieve the user data from the oauth token
+        OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
+        Map<String, Object> context = new HashMap<>();
+        context.put("user", principal.getAttributes());
 
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
@@ -44,24 +57,8 @@ public class ErrorPage implements ErrorController {
 
                 // Parse into a string and return
                 String bodyStr = body.apply("");
-                String templateString = layout.apply(bodyStr);
-
-                return templateString;
-            }
-
-            // Handle 401 Error
-            else if (statusCode == HttpStatus.UNAUTHORIZED.value()) {
-                // Select the outer layout and inner body templates
-                Handlebars handlebars = new Handlebars(loader);
-                Template layout = handlebars.compile("layouts/login");
-                Template body = handlebars.compile("unauthorized-page");
-
-                // Parse into a string and return
-                String bodyStr = body.apply("");
-                String templateString = layout.apply(bodyStr);
-
-                System.out.println("\n UNAUTHORIZED");
-
+                context.put("body", bodyStr);
+                String templateString = layout.apply(context);
                 return templateString;
             }
             
@@ -77,8 +74,8 @@ public class ErrorPage implements ErrorController {
 
                 // Parse into a string and return
                 String bodyStr = body.apply("");
-                String templateString = layout.apply(bodyStr);
-
+                context.put("body", bodyStr);
+                String templateString = layout.apply(context);
                 return templateString;
             }
         }
