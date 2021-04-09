@@ -1,3 +1,7 @@
+/******************************************************************************
+**  /login route that displays the Google oauth login button
+******************************************************************************/
+
 package com.adamjwright.bug_tracker.controllers;
 
 import java.io.IOException;
@@ -7,14 +11,14 @@ import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginPage {
 
     // The login page which is the first page rendered when visiting the app
-    @RequestMapping("/login")
+    @GetMapping("/login")
 	public String index() throws IOException {
         // Set the directory and file extension of the templates
         TemplateLoader loader = new ClassPathTemplateLoader();
