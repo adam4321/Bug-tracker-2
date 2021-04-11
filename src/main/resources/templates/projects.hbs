@@ -1,6 +1,7 @@
-{{!--   New project view - using express handlebars    --}}
+{{!--   New project view - using java handlebars    --}}
+
 <title>Bug Tracker | Projects</title>
-<link type="text/css" rel="stylesheet" href="/css/project.css">
+<link type="text/css" rel="stylesheet" href="css/project.css">
 
 {{!-- Access lvl 3 can edit projects --}}
 {{#if (greater this.accessLevel 2)}}
@@ -84,4 +85,4 @@
     <br>
 {{/if}}
 
-<script src="/js/projects.js"></script>
+<script src="js/projects.js"></script>
