@@ -1,4 +1,6 @@
-// File of functions that will be called by the Handlebars templating engine
+/******************************************************************************
+**  File of functions that will be called by the Handlebars templating engine
+******************************************************************************/
 
 package com.adamjwright.bug_tracker;
 
