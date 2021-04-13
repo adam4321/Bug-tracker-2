@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import com.adamjwright.bug_tracker.HandlebarsHelpers;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
@@ -33,11 +36,21 @@ public class Programmers {
     
     // Displays the list of current programmers
     @GetMapping("/programmers")
-    public String index(Authentication authentication) throws IOException {
+    public String index(Authentication authentication, HttpServletRequest request) throws IOException {
         // Retrieve the user data from the oauth token
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         Map<String, Object> context = new HashMap<>();
         context.put("user", principal.getAttributes());
+
+        // Gather and set the user accessLevel
+        javax.servlet.http.Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("accessLevel")) {
+                    context.put("accessLevel", Integer.parseInt(c.getValue()));
+                }
+            }
+        }
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
