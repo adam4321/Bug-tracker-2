@@ -10,12 +10,16 @@
 	</parent>
 	<groupId>com.adamjwright</groupId>
 	<artifactId>bug_tracker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
+
 	<name>bug_tracker</name>
+
 	<description>Spring Boot reimplementation of Software Bug Tracker</description>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -65,18 +69,43 @@
 
         <dependency>
             <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
             <artifactId>js-cookie</artifactId>
-            <version>2.1.0</version>
+            <version>2.2.1</version>
         </dependency>
 	
     </dependencies>
 
 	<build>
+    <finalName>bug_tracker</finalName>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.adamjwright.bug_tracker.BugTrackerApplication</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+
+            </plugin>
+
 		</plugins>
 	</build>
 
