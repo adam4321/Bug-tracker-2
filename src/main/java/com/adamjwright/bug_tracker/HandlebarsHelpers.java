@@ -6,6 +6,21 @@ package com.adamjwright.bug_tracker;
 
 public class HandlebarsHelpers {
 
+    // Compare equality of 2 numbers
+    public static String eq(Integer a, Integer b) {
+        // Test for null parameters
+        if (a == null || b == null) {
+            return "";
+        }
+
+        if (a == b) {
+            return "true";
+        }
+        else {
+            return "";
+        }
+    }
+
     // Compare equality of string and number
     public static String eq_str_num(String a, Integer b) {
         // Test for null parameters
