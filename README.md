@@ -14,3 +14,8 @@ through JDBC.
 This implementation is an extension of the UI and a complete backend 
 rewrite of a group project from Oregon State University CS-340 
 by Adam Wright and Herman Cai.
+
+It is designed to be deployed as a Fat Jar file and then it can be
+registered as a systemd service and started by running sudo systemctl
+start <BugTracker.service>. The current status can then be checked with
+sudo systemctl status <BugTracker.service>.
