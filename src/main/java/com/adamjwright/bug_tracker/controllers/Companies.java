@@ -1,7 +1,8 @@
 /******************************************************************************
 **  /companies routes
 **
-**  /companies/ - displays the list of currenct companies
+**  /              -> displays the list of currenct companies
+**  /deleteCompany -> delete a company
 ******************************************************************************/
 
 package com.adamjwright.bug_tracker.controllers;
@@ -17,6 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import com.adamjwright.bug_tracker.HandlebarsHelpers;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
@@ -26,6 +30,8 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,11 +39,21 @@ public class Companies {
     
     // Displays the list of current companies
     @GetMapping("/companies")
-	public String index(Authentication authentication) throws IOException {
+	public String renderCompanies(Authentication authentication, HttpServletRequest request) throws IOException {
         // Retrieve the user data from the oauth token
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         Map<String, Object> context = new HashMap<>();
         context.put("user", principal.getAttributes());
+
+        // Gather and set the user accessLevel
+        javax.servlet.http.Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("accessLevel")) {
+                    context.put("accessLevel", Integer.parseInt(c.getValue()));
+                }
+            }
+        }
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
@@ -46,7 +62,7 @@ public class Companies {
         String DB_PASSWORD = reader.getString("db.password");
 
         // Define sql query
-        String sqlSelectAllCompanies = "SELECT * FROM Companies ORDER BY dateJoined DESC";
+        String sqlSelectAllCompanies = "SELECT * FROM Companies ORDER BY dateJoined DESC, companyId DESC";
 
         // Array of maps to hold the company data
         ArrayList<Map<String, String>> companyDbData = new ArrayList<Map<String, String>>();
@@ -96,4 +112,34 @@ public class Companies {
         String templateString = layout.apply(context);
 		return templateString;
 	}
+
+
+    // Delete a company from the list
+    @PostMapping("/companies/deleteCompany")
+    public void deleteCompany(@RequestBody Map<String, Object> payload) throws IOException {
+
+        // Get database configuration
+        ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
+        String CONNECTION_URL = reader.getString("db.url");
+        String DB_USER = reader.getString("db.username");
+        String DB_PASSWORD = reader.getString("db.password");
+
+        // Define sql query
+        String sqlDeleteCompany = "DELETE FROM Companies WHERE companyId = ?";
+
+        // Connect to db
+        try (Connection conn = DriverManager.getConnection(CONNECTION_URL, DB_USER, DB_PASSWORD); 
+            PreparedStatement ps = conn.prepareStatement(sqlDeleteCompany)) {
+
+            // Set the query string param companyId in the mysql prepared statement
+            ps.setInt(1, (Integer)payload.get("companyId"));
+            ps.executeUpdate();
+
+            conn.close();
+        } 
+        // Handle a failed db connection
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
