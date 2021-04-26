@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import com.adamjwright.bug_tracker.HandlebarsHelpers;
@@ -27,9 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ErrorPage implements ErrorController {
 
-    // "Your bugs" the initial dashboard page -- render the bug list
+    // Parse the http error and display the correct error page
     @GetMapping("/error")
-	public String handleError(HttpServletRequest request, Authentication authentication) throws IOException {
+	public String handleError(Authentication authentication, HttpServletRequest request) throws IOException {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         
         // Set the directory and file extension of the templates
@@ -41,6 +42,16 @@ public class ErrorPage implements ErrorController {
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         Map<String, Object> context = new HashMap<>();
         context.put("user", principal.getAttributes());
+
+        // Gather and set the user accessLevel
+        javax.servlet.http.Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("accessLevel")) {
+                    context.put("accessLevel", Integer.parseInt(c.getValue()));
+                }
+            }
+        }
 
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
