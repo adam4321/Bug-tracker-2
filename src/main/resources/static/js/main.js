@@ -46,17 +46,22 @@ window.onclick = (event) => {
 /* POST request to log out the user ---------------------------------------- */
 
 let logout = () => {
-    fetch('/bug_tracker/logout', {
-        method: 'POST'
-    }).then(function (response) {
-        if (response.ok) {
-            window.location.href = '/bug_tracker/login';
-        }
-        return Promise.reject(response);
-    }).then(function (data) {
-        console.log(data);
-    }).catch(function (error) {
-        console.warn('Something went wrong.', error);
-    });
-}
+    let req = new XMLHttpRequest();
+    let path = '/bug_tracker/logout';
 
+    // Ajax request
+    req.open('POST', path, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
+    req.addEventListener('load', () => {
+        if (req.status >= 200 && req.status < 400) {
+            // Redirect to companies page
+            window.location.href = "/bug_tracker/login";
+        } 
+        else {
+            console.error('Database return error');
+        }
+    });
+
+    req.send();
+}
