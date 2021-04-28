@@ -23,7 +23,7 @@
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">{{this.companyName}}</td>
                         <td>{{this.dateJoined}}</td>
-                        <td><a class="update-btn" href="/bug_tracker/companies/edit_company?companyId={{this.companyId}}">Update</a></td>
+                        <td><a class="update-btn" href="/bug_tracker/edit_company?companyId={{this.companyId}}">Update</a></td>
                         <td>
                             <input 
                                 type="button" 
@@ -67,7 +67,7 @@
 
 {{#if (greater this.accessLevel 1)}}    
     {{!-- Container for the dashboard --}}
-    <button onclick="window.location.href='/bug_tracker/companies/add_company'" class="btn-style" id="add-btn">
+    <button onclick="window.location.href='/bug_tracker/add_company'" class="btn-style" id="add-btn">
         Add Company
     </button>
     <br>
