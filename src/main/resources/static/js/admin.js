@@ -24,12 +24,13 @@ function resetTable() {
         // Make the ajax request
         req.open("POST", path, true);   
         req.setRequestHeader("Content-Type", "application/json");
+        req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
         req.send(); 
 
         req.addEventListener("load", () => {
             if (req.status >= 200 && req.status < 400) {
-                // Return the user to the bugs page
-                window.location.href = "/bug_tracker/logout";
+                // Log the user out, because they no longer exist in the system (declared in main.js)
+                logout();
             } 
             else {
                 console.error("Reset table request error.");
