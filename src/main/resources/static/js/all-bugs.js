@@ -34,6 +34,7 @@ function deleteBug(tbl, curRow, bugId) {
 
         req.open("POST", path, true);
         req.setRequestHeader("Content-Type", "application/json");
+        req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
         req.addEventListener("load", () => {
             if (req.status >= 200 && req.status < 400) {
                 for (let i = 0; i < rowCount; i++) {
@@ -62,11 +63,12 @@ let viewAllButton = document.getElementById("clear-search");
 viewAllButton.setAttribute('onclick', 'viewAllBugs()');
 
 function viewAllBugs() {
-    let path = "/bug_tracker/all_bugs/viewAllBugs";
+    let path = "/bug_tracker/all_bugs/viewAll";
     let req = new XMLHttpRequest();
 
     req.open("POST", path, true);   
     req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
     req.send();
 
     req.addEventListener("load", () => {
@@ -120,6 +122,7 @@ function searchBug() {
 
     req.open("POST", path, true);   
     req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
     req.send(reqBody); 
 
     req.addEventListener("load", () => {
