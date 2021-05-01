@@ -39,9 +39,12 @@ function checkBoxChecked() {
 // UPDATE BUG CLIENT SIDE - Function to submit the bug's form data
 let recordForm = document.getElementById('recordForm');
 bugId = document.getElementById("save");
+let spinner = document.getElementById('spinner');
+spinner.style.visibility = "hidden";
 
 recordForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    spinner.style.visibility = "visible";
     let req = new XMLHttpRequest();
     let path = '/bug_tracker/edit_bug/updateBug';
 
@@ -72,6 +75,9 @@ recordForm.addEventListener('submit', (e) => {
     }
 
     // Fill the project, if it has a value
+    console.log(recordForm.elements.bugProject.value);
+
+    // Fill the project, if it has a value
     let project;
     if (recordForm.elements.bugProject.value) {
         project = recordForm.elements.bugProject.value;
@@ -95,13 +101,16 @@ recordForm.addEventListener('submit', (e) => {
     // Ajax request
     req.open('POST', path, true);
     req.setRequestHeader('Content-Type', 'application/json');
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
     req.addEventListener('load', () => {
         if (req.status >= 200 && req.status < 400) {
-            // Return the user to the bugs page
-            window.location.href = "http://localhost:5000/bug_tracker/all_bugs";
-    
-        } else {
+            // Reset the spinner and return the user to your bugs
+            setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
+            window.location.href = "/bug_tracker/home";
+        } 
+        else {
             console.error('Database return error');
+            setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
         }
     });
 
