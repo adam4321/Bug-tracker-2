@@ -18,6 +18,7 @@ function deleteCompany(tbl, curRow, companyId) {
     
         req.open("POST", path, true);
         req.setRequestHeader("Content-Type", "application/json");
+        req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
         req.addEventListener("load", () => {
             if (req.status >= 200 && req.status < 400) {
                 for (let i = 0; i < rowCount; i++) {
