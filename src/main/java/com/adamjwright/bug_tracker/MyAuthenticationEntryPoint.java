@@ -1,3 +1,7 @@
+/******************************************************************************
+**  Routes to redirect all 401 Unauthorized http codes to /unauthorized
+******************************************************************************/
+
 package com.adamjwright.bug_tracker;
 
 import java.io.IOException;
