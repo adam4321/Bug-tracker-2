@@ -14,7 +14,7 @@ recordForm.addEventListener('submit', (e) => {
     e.preventDefault();
     spinner.style.visibility = "visible"; 
     let req = new XMLHttpRequest();
-    let path = '/bug_tracker/companies/edit_company/updateCompany';
+    let path = '/bug_tracker/edit_company/updateCompany';
 
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -30,16 +30,18 @@ recordForm.addEventListener('submit', (e) => {
     // Ajax request
     req.open('POST', path, true);
     req.setRequestHeader('Content-Type', 'application/json');
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
     req.addEventListener('load', () => {
         if (req.status >= 200 && req.status < 400) {
             // Clear the submit form and stop spinner
-            document.getElementById('recordForm').reset();
             setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
             
             // Redirect to companies page
             window.location.href = "/bug_tracker/companies";
-        } else {
-            console.error('Database return error');
+        } 
+        else {
+            setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
+            console.error('Database returned error: ' + req.status);
         }
     });
 
