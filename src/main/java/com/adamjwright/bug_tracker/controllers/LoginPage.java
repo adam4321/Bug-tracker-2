@@ -19,7 +19,7 @@ public class LoginPage {
 
     // The login page which is the first page rendered when visiting the app
     @GetMapping("/login")
-	public String index() throws IOException {
+	public String renderLogin() throws IOException {
         // Set the directory and file extension of the templates
         TemplateLoader loader = new ClassPathTemplateLoader();
         loader.setPrefix("/templates");
