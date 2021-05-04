@@ -1,7 +1,7 @@
 /******************************************************************************
 **  /programmers routes
 **
-**  /programmers/ - displays the list of current companies
+**  / - displays the list of current companies
 ******************************************************************************/
 
 package com.adamjwright.bug_tracker.controllers;
@@ -36,7 +36,7 @@ public class Programmers {
     
     // Displays the list of current programmers
     @GetMapping("/programmers")
-    public String index(Authentication authentication, HttpServletRequest request) throws IOException {
+    public String renderProgrammers(Authentication authentication, HttpServletRequest request) throws IOException {
         // Retrieve the user data from the oauth token
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         Map<String, Object> context = new HashMap<>();
@@ -74,8 +74,8 @@ public class Programmers {
                     Map<String, String> hm = new HashMap<>();
 
                     hm.put("programmerId", rs.getString("programmerId"));
-                    hm.put("lastName", rs.getString("firstName"));
-                    hm.put("firstName", rs.getString("lastName"));
+                    hm.put("firstName", rs.getString("firstName"));
+                    hm.put("lastName", rs.getString("lastName"));
                     hm.put("email", rs.getString("email"));
                     hm.put("dateStarted", rs.getString("dateStarted"));
                     hm.put("accessLevel", rs.getString("accessLevel"));
@@ -85,8 +85,8 @@ public class Programmers {
 
             conn.close();
         } 
+        // Handle a failed db connection
         catch (SQLException e) {
-            // Handle a failed db connection
             e.printStackTrace();
         }
 
