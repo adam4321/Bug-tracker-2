@@ -1,3 +1,7 @@
+/******************************************************************************
+**  /unauthorized 401 http code route
+******************************************************************************/
+
 package com.adamjwright.bug_tracker.controllers;
 
 import java.io.IOException;
@@ -7,15 +11,15 @@ import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UnauthorizedPage {
 
     // The login page which is the first page rendered when visiting the app
-    @RequestMapping("/unauthorized")
-	public String index() throws IOException {
+    @GetMapping("/unauthorized")
+	public String renderUnauthorized() throws IOException {
         // Set the directory and file extension of the templates
         TemplateLoader loader = new ClassPathTemplateLoader();
         loader.setPrefix("/templates");
