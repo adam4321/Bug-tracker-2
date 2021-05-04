@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EditCompany {
     
-    // Displays the list of current companies
+    // Displays the current company's info
     @GetMapping("/edit_company")
     @ResponseBody
     public String renderEditCompany(@RequestParam(name = "companyId", required  = true) String companyId, Authentication authentication, HttpServletRequest request) throws IOException {
