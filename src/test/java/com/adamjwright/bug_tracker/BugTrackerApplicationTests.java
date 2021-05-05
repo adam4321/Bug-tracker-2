@@ -1,13 +1,16 @@
+/*******************************************************
+**  Test that makes sure that the applciation loads
+*******************************************************/
+
 package com.adamjwright.bug_tracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BugTrackerApplicationTests {
+public class BugTrackerApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
-
 }
