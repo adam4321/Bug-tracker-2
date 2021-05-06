@@ -7,7 +7,7 @@
 <div id="top-row-container">
 
     {{!-- If condition to set a lower height when chart has 1 entry --}}
-    {{#if (eq_str_num bugs.length 1)}}
+    {{#if (eq bugs.length 1)}}
     <div id="table-container-one-row" class="table-card mdl-card mdl-shadow--2dp">
     {{else}}
     <div id="table-container" class="table-card mdl-card mdl-shadow--2dp">
@@ -62,7 +62,7 @@
                             </td>
                             <td>{{this.dateStarted}}</td>
                             <td>{{this.priority}}</td>
-                            <td class="bugFixed">{{#if this.fixed}} Yes {{else}} No {{/if}}</td>
+                            <td class="bugFixed">{{#if (eq_str_num this.fixed 1)}} Yes {{else}} No {{/if}}</td>
                             <td class="mdl-data-table__cell--non-numeric"><div class="user-text">{{this.resolution}}</div></td>
                             <td><a class="update-btn" href="/bug_tracker/edit_bug?bugId={{this.bugId}}">Update</a></td>
                             <td>
