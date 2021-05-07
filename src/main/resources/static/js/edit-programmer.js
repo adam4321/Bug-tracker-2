@@ -11,7 +11,7 @@ spinner.style.visibility = "hidden";
 function submitUpdate() {
     spinner.style.visibility = "visible";
     let req = new XMLHttpRequest();
-    const PATH = "/bug_tracker/programmers/edit_programmer/updateProgrammer";
+    const PATH = "/bug_tracker/edit_programmer/updateProgrammer";
  
     const urlParams = new URLSearchParams(window.location.search);
     
@@ -30,17 +30,19 @@ function submitUpdate() {
     // Ajax request
     req.open("POST", PATH, true);
     req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
     req.addEventListener("load", function redirectHome() {
         if (req.status >= 200 && req.status < 400) {
             // Clear the submit form and stop spinner
-            document.getElementById('recordForm').reset();
             setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
             
             // Redirect to companies page
             window.location.href = "/bug_tracker/programmers";
         }
         else {
-            alert("An error occurred posting data to the server.");
+            setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
+            console.error('Database returned error: ' + req.status);
+            alert("An error occurred connecting to the server.");
         }
     });
     
@@ -51,5 +53,5 @@ function submitUpdate() {
 // Onclick function so that pressing "cancel" returns the user to programmers list
 document.getElementById("cancel").addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "http://localhost:5000/bug_tracker/programmers";
+    window.location.href = "/bug_tracker/programmers";
 });
