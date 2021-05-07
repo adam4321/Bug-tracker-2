@@ -11,7 +11,7 @@ recordForm.addEventListener('submit', (e) => {
     e.preventDefault();
     spinner.style.visibility = "visible";
     let req = new XMLHttpRequest();
-    let path = '/bug_tracker/projects/edit_project/updateProject';
+    let path = '/bug_tracker/edit_project/updateProject';
 
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -30,10 +30,10 @@ recordForm.addEventListener('submit', (e) => {
     // Ajax request
     req.open('POST', path, true);
     req.setRequestHeader('Content-Type', 'application/json');
+    req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
     req.addEventListener('load', () => {
         if (req.status >= 200 && req.status < 400) {
             // Clear the submit form and turn off the spinner
-            document.getElementById('recordForm').reset();
             setTimeout(() => { spinner.style.visibility = "hidden"; }, 1000);
 
             // Redirect to companies page
