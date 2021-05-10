@@ -1,7 +1,7 @@
-{{!--  Edit bug page view - using express handlebars  --}}
+{{!--  Edit bug page view - using java handlebars  --}}
 
 <title>Bug Tracker | Edit Bug</title>
-<link type="text/css" rel="stylesheet" href="/css/edit-bug.css">
+<link type="text/css" rel="stylesheet" href="css/edit-bug.css">
       
 {{!-- Container for the dashboard --}}
 <div class="form-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop" id="main-box">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-        <form id="recordForm" action="/bug_tracker/edit_bug/updateBug">
+        <form id="recordForm">
             <div class="grid-container">
                 <div><label class="textarea-label" for="bugSummary">Bug Summary</label></div>
                 <div><textarea required name="bugSummary" id="bug-summary-field">{{editBug.bugSummary}}</textarea></div>
@@ -21,14 +21,14 @@
                 <div><label for="bug-project">Project</label></div>
                 <div>
                     <select class="submitBtn" name="bugProject" id="bug-project-field">
-                        {{#with editBug}} 
+                        {{#with editBug}}
                             {{#if this.projectName}}
-                                <option value="{{this.project}}" selected="selected">{{this.projectName}}</option>
+                                <option value="{{this.projectId}}" selected="selected">{{this.projectName}}</option>
                             {{else}}
-                                <option value="{{this.project}}" selected="selected">NULL</option>
+                                <option value="null" selected="selected">NULL</option>
                             {{/if}} 
                         {{/with}}
-                        <option value="">NULL</option>
+                        <option value="null">NULL</option>
                         {{#each projects}}
                             <option value="{{this.projectId}}">{{this.projectName}}</option>
                         {{/each}}
@@ -79,7 +79,7 @@
                 {{!-- Render the correct state of fixed --}}
                 <div><label for="bug-fixed">Fixed</label></div>
                 <div>
-                    {{#if editBug.fixed}}
+                    {{#if (eq_str_num editBug.fixed 1)}}
                     <input class="radio-input" type="radio" name="bugFixed" value="1" id="bug-fixed-yes" checked>
                     <label class="radio-label" for="bug-fixed">Yes</label>
                     <input class="radio-input" type="radio" name="bugFixed" value="0" id="bug-fixed-no">
@@ -95,13 +95,12 @@
                 <div><label class="textarea-label" for="bug-resolution">Resolution</label></div>
                 <div><textarea name="bugResolution" id="bug-resolution-field">{{editBug.resolution}}</textarea></div>
 
-                <div>
-                    <input class="submitBtn btn-style" type="submit" id="save" name="{{editBug.bugId}}" value="Update" onclick="checkBoxChecked()">
-                </div>
+                <input class="submitBtn btn-style" type="submit" id="save" name="{{editBug.bugId}}" value="Update" onclick="checkBoxChecked()">
+                <div id="spinner" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
             </div>
         </form>
     </div>
 </div>
 
 
-<script src="/js/edit-bug.js"></script>
+<script src="js/edit-bug.js"></script>
