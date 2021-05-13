@@ -13,12 +13,13 @@ try {
             let table = document.getElementById(tbl);
             let rowCount = table.rows.length;
             let req = new XMLHttpRequest();
-            let path = "/bug_tracker/all_bugs/deleteBug";
+            let path = "/bug_tracker/home/deleteBug";
 
             reqBody = JSON.stringify({bugId: bugId});
 
             req.open("POST", path, true);
             req.setRequestHeader("Content-Type", "application/json");
+            req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
             req.addEventListener("load", () => {
                 if (req.status >= 200 && req.status < 400) {
                     for (let i = 0; i < rowCount; i++) {
@@ -52,6 +53,7 @@ try {
 
         req.open("POST", path, true);   
         req.setRequestHeader("Content-Type", "application/json");
+        req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
         req.send();
 
         req.addEventListener("load", () => {
@@ -99,12 +101,13 @@ try {
             return;
         }
 
-        let path = "/bug_tracker/all_bugs/searchBug";
+        let path = "/bug_tracker/home/searchBug";
         let req = new XMLHttpRequest();
         let reqBody = JSON.stringify({searchString: searchString});
 
         req.open("POST", path, true);   
         req.setRequestHeader("Content-Type", "application/json");
+        req.setRequestHeader("X-XSRF-TOKEN", Cookies.get('XSRF-TOKEN'));
         req.send(reqBody); 
 
         req.addEventListener("load", () => {
