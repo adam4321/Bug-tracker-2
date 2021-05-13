@@ -28,8 +28,8 @@
                             <td class="mdl-data-table__cell--non-numeric">{{this.companyName}}</td>
                             <td>{{this.dateStarted}}</td>
                             <td>{{this.lastUpdated}}</td>
-                            <td>{{#if this.inMaintenance}} Yes {{else}} No {{/if}}</td>
-                            <td><a class="update-btn" href="/bug_tracker/projects/edit_project?projectId={{this.projectId}}">Update</a></td>
+                            <td>{{#if (eq_str_num this.inMaintenance 1)}} Yes {{else}} No {{/if}}</td>
+                            <td><a class="update-btn" href="/bug_tracker/edit_project?projectId={{this.projectId}}">Update</a></td>
                             <td>
                                 <input 
                                     type="button" 
@@ -68,7 +68,7 @@
                             <td class="mdl-data-table__cell--non-numeric">{{this.companyName}}</td>
                             <td>{{this.dateStarted}}</td>
                             <td>{{this.lastUpdated}}</td>
-                            <td>{{#if this.inMaintenance}} Yes {{else}} No {{/if}}</td>
+                            <td>{{#if (eq_str_num this.inMaintenance 1)}} Yes {{else}} No {{/if}}</td>
                         </tr>
                     {{/each}}                
                 </tbody>
@@ -79,7 +79,7 @@
 
 {{#if (greater this.accessLevel 1)}}    
     {{!-- Container for the dashboard --}}
-    <button onclick="window.location.href='/bug_tracker/projects/add_project'" class="btn-style" id="add-btn">
+    <button onclick="window.location.href='/bug_tracker/add_project'" class="btn-style" id="add-btn">
         Add Project
     </button>
     <br>
