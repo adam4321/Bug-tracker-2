@@ -18,7 +18,7 @@
 
                 <label for="project-company">Company</label>
                 <select class="submitBtn" required name="projectCompany" id="project-company-field">
-                    <option value="{{this.companyName}}" selected>{{this.companyName}}"</option>
+                    <option value="{{this.companyName}}" selected>{{this.companyName}}</option>
                     {{#each companies}}
                         <option>{{this.companyName}}</option>
                     {{/each}}
@@ -33,7 +33,7 @@
                 <br>
         
                 <label for="maintenance">In Maintenance</label>
-                {{#if this.inMaintenance}} 
+                {{#if (eq_str_num this.inMaintenance 1)}} 
                 <input class="radio-input" type="radio" name="maintenance" value="1" id="maintenance-yes" checked>
                 <label class="radio-label" for="maintenance">Yes</label>
                 <input class="radio-input" type="radio" name="maintenance" value="0" id="maintenance-no">
