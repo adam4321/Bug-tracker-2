@@ -46,7 +46,7 @@ public class Companies {
         context.put("user", principal.getAttributes());
 
         // Gather and set the user accessLevel
-        javax.servlet.http.Cookie[] cookies = request.getCookies();
+        Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie c : cookies) {
                 if (c.getName().equals("accessLevel")) {
