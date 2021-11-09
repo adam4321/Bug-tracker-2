@@ -66,6 +66,12 @@
     padding: 5px;
 }
 
+.box-without-button {
+    height: 73vh;
+    overflow-y: scroll;
+    width: auto;
+}
+
 .update-btn {
     background-color: #2d7a99;
     border: none;
@@ -134,22 +140,18 @@ li {
 }
 
 .mdl-card__supporting-text {
-    width: 95%;
+    width: auto;
 }
 
 #table-container-one-row {
     margin: 0 3% 0 0;
     width: 1210px;
     height: 280px;
-    /* height: 85vh; */
-    overflow-y: hidden;
 }
 
 #table-container {
     margin: 0 3% 0 0;
     width: 1210px;
-    /* height: 85vh; */
-    overflow-y: hidden;
 }
 
 #bug-chart-container {

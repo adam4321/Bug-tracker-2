@@ -20,11 +20,17 @@
 }
 
 .card-lvl-3 {
-    width: 500px !important;
+    width: 510px !important;
 }
 
 .card-lvl-2 {
-    width: 320px !important;
+    width: 334px !important;
+}
+
+.box-with-button {
+    height: 65vh;
+    overflow-y: scroll;
+    width: auto;
 }
 
 .update-btn {
