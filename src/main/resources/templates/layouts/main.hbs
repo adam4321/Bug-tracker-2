@@ -91,55 +91,56 @@
                     <div class="mdl-color-text--white modal-title infoTitle">
                         <h2 class="mdl-card__title-text">Help</h2>
                     </div>
+                    <div class="modal-body">
+                         <h4 class="mdl-color-text--grey-600">Login</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            When a user has logged in using a Google credential, they are taken to the dashboard
+                            and shown the bugs that are assigned to them. Google is the only authentication
+                            provider that is supported at this time.
+                        </p>
 
-                    <h4 class="mdl-color-text--grey-600">Login</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        When a user has logged in using a Google credential, they are taken to the dashboard
-                        and shown the bugs that are assigned to them. Google is the only authentication
-                        provider that is supported at this time.
-                    </p>
+                        <h4 class="mdl-color-text--grey-600">Your Bugs</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The Your Bugs page displays all of the bugs that have the current user one of the
+                            programmers. If the user is brand new, then they will have no bugs assigned yet. A new
+                            user can either be added to an existing bug or a new bug can be added with the new user
+                            as a Programmer. The existing bugs can be found on the All Bugs page and a new bug
+                            can be created on the Add a Bug page. 
+                        </p>
 
-                    <h4 class="mdl-color-text--grey-600">Your Bugs</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The Your Bugs page displays all of the bugs that have the current user one of the
-                        programmers. If the user is brand new, then they will have no bugs assigned yet. A new
-                        user can either be added to an existing bug or a new bug can be added with the new user
-                        as a Programmer. The existing bugs can be found on the All Bugs page and a new bug
-                        can be created on the Add a Bug page. 
-                    </p>
+                        <h4 class="mdl-color-text--grey-600">All Bugs</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The All Bugs page displays the full set of bugs that are cataloged in the system.
+                            The page contains a graph which represents the percentage of all bugs which are
+                            fixed vs. still broken. 
+                        </p>
 
-                    <h4 class="mdl-color-text--grey-600">All Bugs</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The All Bugs page displays the full set of bugs that are cataloged in the system.
-                        The page contains a graph which represents the percentage of all bugs which are
-                        fixed vs. still broken. 
-                    </p>
+                        <h4 class="mdl-color-text--grey-600">Add a Bug</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The Add a Bug page allows a user to enter a new bug into the system. 
+                        </p>
 
-                    <h4 class="mdl-color-text--grey-600">Add a Bug</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The Add a Bug page allows a user to enter a new bug into the system. 
-                    </p>
+                        <h4 class="mdl-color-text--grey-600">Projects</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The Projects page allows a user to enter a new Project into the system. 
+                        </p>
 
-                    <h4 class="mdl-color-text--grey-600">Projects</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The Projects page allows a user to enter a new Project into the system. 
-                    </p>
+                        <h4 class="mdl-color-text--grey-600">Companies</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The Companies page allows a user to enter a new Company into the system. 
+                        </p>
+                        
+                        <h4 class="mdl-color-text--grey-600">Programmers</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The Programmers page allows a user to enter a new bug into the system. 
+                        </p>
 
-                    <h4 class="mdl-color-text--grey-600">Companies</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The Companies page allows a user to enter a new Company into the system. 
-                    </p>
-                    
-                    <h4 class="mdl-color-text--grey-600">Programmers</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The Programmers page allows a user to enter a new bug into the system. 
-                    </p>
-
-                    <h4 class="mdl-color-text--grey-600">Admin</h4>
-                    <p class="mdl-color-text--grey-600 modal-text">
-                        The Admin page is only visible for users with an access level of 3 and it 
-                        allows a user to reset the database to its default initially populated data. 
-                    </p>
+                        <h4 class="mdl-color-text--grey-600">Admin</h4>
+                        <p class="mdl-color-text--grey-600 modal-text">
+                            The Admin page is only visible for users with an access level of 3 and it 
+                            allows a user to reset the database to its default initially populated data. 
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -167,7 +168,7 @@
 
                 {{!-- Left Side Nav --}}
                 <header class="demo-drawer-header">
-                    <img src="{{user.picture}}" class="demo-avatar">
+                    <img src="{{user.picture}}" class="demo-avatar" referrerpolicy="no-referrer" alt="Google user image">
                     <div class="demo-avatar-dropdown">
                         <span>{{user.email}}</span>
                         <div class="mdl-layout-spacer"></div>
