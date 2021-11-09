@@ -95,9 +95,10 @@ public class YourBugs {
             // No result means the user and new and must be added
             if (!rs1.next()) {
                 // Set the new user to an accessLevel of 3
-                javax.servlet.http.Cookie cookie = new Cookie("accessLevel", "3");
-                response.addCookie(cookie);
+                Cookie cookie = new Cookie("accessLevel", "3");
                 cookie.setMaxAge(24 * 60 * 60);
+                cookie.setSecure(true);
+                response.addCookie(cookie);
                 context.put("accessLevel", 3);
 
                 // Register the user in the db
@@ -113,9 +114,10 @@ public class YourBugs {
             // The user is already registered in the system
             else {
                 // Set the user's stored accessLevel in session cookie and context object
-                javax.servlet.http.Cookie cookie = new Cookie("accessLevel", rs1.getString("accessLevel"));
-                response.addCookie(cookie);
+                Cookie cookie = new Cookie("accessLevel", rs1.getString("accessLevel"));
                 cookie.setMaxAge(24 * 60 * 60);
+                cookie.setSecure(true);
+                response.addCookie(cookie);
                 context.put("accessLevel", Integer.parseInt(rs1.getString("accessLevel")));
 
                 // Gather the user's bugs from the db
