@@ -24,11 +24,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.adamjwright.bug_tracker.HandlebarsHelpers;
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
-import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
-import com.github.jknack.handlebars.io.TemplateLoader;
+import com.adamjwright.bug_tracker.enums.TemplateBodyEnum;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
@@ -38,15 +34,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class YourBugs {
+public class YourBugs extends BaseController {
 
     // "Your bugs" the initial dashboard page -- render the bug list
     @GetMapping("/home")
 	public String renderYourBugs(Authentication authentication, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Retrieve the user data from the oauth token
-        OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         Map<String, Object> context = new HashMap<>();
-        context.put("user", principal.getAttributes());
+        addUserDataToModel(context, authentication, request);
 
         // Pull Programmer's Id from Google oauth added to context
         String userId = (String)((Map)context.get("user")).get("sub");
@@ -166,25 +160,7 @@ public class YourBugs {
 
         // Add the company data to the context object
         context.put("bugs", bugsDbData);
-
-        // Set the directory and file extension of the templates
-        TemplateLoader loader = new ClassPathTemplateLoader();
-        loader.setPrefix("/templates");
-        loader.setSuffix(".hbs");
-
-        // Create handlebars object and add helper methods
-        Handlebars handlebars = new Handlebars(loader);
-        handlebars.registerHelpers(HandlebarsHelpers.class);
-
-        // Select the outer layout and inner body templates
-        Template layout = handlebars.compile("layouts/main");
-        Template body = handlebars.compile("your-bugs");
-
-        // Parse into a string and return
-        Object bodyStr = body.apply(context);
-        context.put("body", bodyStr);
-        String templateString = layout.apply(context);
-		return templateString;
+		return getMarkupString(context, TemplateBodyEnum.YOUR_BUGS);
 	}
 
 
