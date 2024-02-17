@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 
 import com.adamjwright.bug_tracker.enums.TemplateBodyEnum;
-import com.adamjwright.bug_tracker.enums.TemplateLayoutEnum;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +33,7 @@ public class AddBug extends BaseController {
     
     @GetMapping("/add_bug")
     public String renderAddBug(Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
 
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
@@ -91,7 +89,7 @@ public class AddBug extends BaseController {
         // Add the company data to the context object
         context.put("projects", projectDbData);
         context.put("programmers", programmerDbData);
-		return getMarkupString(context, TemplateBodyEnum.ADD_BUG, TemplateLayoutEnum.MAIN);
+		return getMarkupString(context, TemplateBodyEnum.ADD_BUG);
 	}
 
 

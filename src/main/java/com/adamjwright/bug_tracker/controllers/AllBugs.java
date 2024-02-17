@@ -35,8 +35,7 @@ public class AllBugs extends BaseController {
     // Displays the list of all currenct bugs
     @GetMapping("/all_bugs")
     public String renderAllBugs(Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");

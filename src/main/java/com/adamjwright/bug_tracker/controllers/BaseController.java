@@ -19,7 +19,9 @@ import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
 public class BaseController {
-    public void addUserDataToModel(Map<String, Object> context, Authentication authentication, HttpServletRequest request) {
+    public Map<String, Object> addUserDataToModel(Authentication authentication, HttpServletRequest request) {
+        Map<String, Object> context = new HashMap<>();
+        
         // Retrieve the user data from the oauth token
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         context.put("user", principal.getAttributes());
@@ -33,6 +35,8 @@ public class BaseController {
                 }
             }
         }
+
+        return context;
     }
 
     public String getMarkupString(TemplateBodyEnum bodyTemplate, TemplateLayoutEnum layoutTemplate) throws IOException {

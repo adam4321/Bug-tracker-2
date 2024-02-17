@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -29,8 +28,7 @@ public class Admin extends BaseController {
     
     @GetMapping("/admin")
     public String renderAdmin(Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
 		return getMarkupString(context, TemplateBodyEnum.ADMIN);
 	}
 

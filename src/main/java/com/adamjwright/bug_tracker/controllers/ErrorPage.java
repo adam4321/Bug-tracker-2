@@ -5,7 +5,6 @@
 package com.adamjwright.bug_tracker.controllers;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -26,8 +25,7 @@ public class ErrorPage extends BaseController implements ErrorController {
 	public String handleError(Authentication authentication, HttpServletRequest request) throws IOException {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
 
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());

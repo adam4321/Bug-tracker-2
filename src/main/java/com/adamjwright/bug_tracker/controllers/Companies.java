@@ -33,8 +33,7 @@ public class Companies extends BaseController {
     // Displays the list of current companies
     @GetMapping("/companies")
 	public String renderCompanies(Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");

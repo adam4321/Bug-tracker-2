@@ -30,8 +30,7 @@ public class Programmers extends BaseController {
     // Displays the list of current programmers
     @GetMapping("/programmers")
     public String renderProgrammers(Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");

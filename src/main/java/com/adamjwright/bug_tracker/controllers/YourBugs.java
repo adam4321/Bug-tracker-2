@@ -39,8 +39,7 @@ public class YourBugs extends BaseController {
     // "Your bugs" the initial dashboard page -- render the bug list
     @GetMapping("/home")
 	public String renderYourBugs(Authentication authentication, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
 
         // Pull Programmer's Id from Google oauth added to context
         String userId = (String)((Map)context.get("user")).get("sub");

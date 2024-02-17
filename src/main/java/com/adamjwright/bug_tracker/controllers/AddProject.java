@@ -32,8 +32,7 @@ public class AddProject extends BaseController {
     // Displays the list of current projects
     @GetMapping("/add_project")
     public String renderAddProject(Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");

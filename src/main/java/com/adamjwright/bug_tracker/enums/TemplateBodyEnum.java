@@ -9,6 +9,7 @@ public enum TemplateBodyEnum {
     COMPANIES("companies"),
     EDIT_COMPANY("edit-company"),
     LOGIN("login-page"),
+    EDIT_BUG("edit-bug"),
     EDIT_PROGRAMMER("edit-programmer"),
     EDIT_PROJECT("edit-project"),
     NOT_FOUND("not-found"),

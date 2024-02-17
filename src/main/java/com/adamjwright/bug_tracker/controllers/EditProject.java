@@ -37,8 +37,7 @@ public class EditProject extends BaseController {
     @ResponseBody
     public String renderEditProject(@RequestParam(name = "projectId", required  = true) String projectId,
             Authentication authentication, HttpServletRequest request) throws IOException {
-        Map<String, Object> context = new HashMap<>();
-        addUserDataToModel(context, authentication, request);
+        Map<String, Object> context = addUserDataToModel(authentication, request);
         
         // Get database configuration
         ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
